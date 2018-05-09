@@ -3,6 +3,7 @@ package br.com.poc.dominio.entidades;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Objects;
 
 
 @Entity
@@ -11,6 +12,7 @@ public class Documento implements Entidade<Integer> {
 
     @Id
     @GeneratedValue(strategy =  GenerationType.IDENTITY)
+    @Column(columnDefinition = "serial")
     private Integer id;
 
     @NotNull
@@ -27,6 +29,45 @@ public class Documento implements Entidade<Integer> {
 
     @NotNull
     private String hash;
+
+    @Override
+    public String toString(){
+
+        StringBuilder builder = new StringBuilder();
+
+        builder.append("ID=")
+
+                .append(getId())
+
+                .append("|")
+
+                .append("NOME=")
+
+                .append(getNome())
+
+                .append("|");
+
+        return builder.toString();
+
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Documento documento = (Documento) o;
+        return Objects.equals(id, documento.id) &&
+                Objects.equals(nome, documento.nome) &&
+                tipo == documento.tipo &&
+                Objects.equals(caminho, documento.caminho) &&
+                Objects.equals(hash, documento.hash);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(id, nome, tipo, caminho, hash);
+    }
 
     public Tipo getTipo() {
         return tipo;

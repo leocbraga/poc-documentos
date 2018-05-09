@@ -1,9 +1,11 @@
 package br.com.poc.gestao.documentos.controladores;
 
-import br.com.poc.gestao.documento.dto.DocumentoRequisicao;
-import br.com.poc.gestao.documento.dto.RespostaAbstrata;
+import br.com.poc.excecoes.GestaoDocumentoException;
+import br.com.poc.gestao.documentos.dto.DocumentoRequisicao;
+import br.com.poc.gestao.documentos.dto.RespostaAbstrata;
 import br.com.poc.gestao.documentos.servicos.DocumentoServico;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,18 +19,10 @@ public class DocumentoControlador {
     private DocumentoServico documentoServico;
 
     @RequestMapping(path = "/", method = RequestMethod.POST)
-    public RespostaAbstrata salvar(@RequestBody  DocumentoRequisicao documentoRequisicao){
+    public ResponseEntity<RespostaAbstrata> salvar(@RequestBody  DocumentoRequisicao documentoRequisicao) throws GestaoDocumentoException {
 
-        return documentoServico.salvar(documentoRequisicao);
-
-    }
-
-    @RequestMapping(path = "/", method = RequestMethod.GET)
-    public String teste(){
-
-        return "Leonardo";
+        return ResponseEntity.ok(documentoServico.salvar(documentoRequisicao));
 
     }
-
 
 }

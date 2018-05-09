@@ -1,4 +1,4 @@
-package br.com.poc.gestao.documento.dto;
+package br.com.poc.gestao.documentos.dto;
 
 import br.com.poc.dominio.entidades.*;
 
