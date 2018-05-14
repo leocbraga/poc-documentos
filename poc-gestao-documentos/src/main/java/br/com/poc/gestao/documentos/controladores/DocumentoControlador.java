@@ -18,6 +18,7 @@ public class DocumentoControlador {
     @Autowired
     private DocumentoServico documentoServico;
 
+
     @RequestMapping(path = "/", method = RequestMethod.POST)
     public ResponseEntity<RespostaAbstrata> salvar(@RequestBody  DocumentoRequisicao documentoRequisicao) throws GestaoDocumentoException {
 

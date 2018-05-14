@@ -14,7 +14,7 @@ public class ClienteKafka {
 
     private Logger LOGGER = Logger.getLogger(ClienteKafka.class);
 
-    private static final String TOPICO_INCLUSAO_DOCUMENTO = "topico_documento";
+    public static final String TOPICO_INCLUSAO_DOCUMENTO = "topico_documento";
 
     @Autowired
     private KafkaTemplate<Integer, String> template;
